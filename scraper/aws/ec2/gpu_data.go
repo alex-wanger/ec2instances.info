@@ -11,7 +11,7 @@ type gpuData struct {
 	computeCapability float64
 	gpuCount          float64
 	// gpuMemory is the total VRAM across all GPUs in the instance, matching what AWS publishes.
-	// It is converted to per-GPU VRA when copied onto the instance in addGpuInfo. (issue #695)
+	// It is converted to per-GPU VRAM when copied onto the instance in addGpuInfo. (issue #695)
 	gpuMemory int
 }
 

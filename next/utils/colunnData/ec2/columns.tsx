@@ -58,8 +58,9 @@ export function calculateCost(
         ] as number;
         if (!pricingUnitModifier) return -1;
 
+        // GPU memory is per-GPU, so multiply by the number of GPUs
         if (pricingUnit === "gpu_memory") {
-            pricingUnitModifier *= (instance.GPU_memory as number) || 1;
+            pricingUnitModifier *= (instance.GPU as number) || 1;
         }
     }
 
