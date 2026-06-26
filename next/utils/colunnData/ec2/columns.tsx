@@ -58,9 +58,13 @@ export function calculateCost(
         ] as number;
         if (!pricingUnitModifier) return -1;
 
-        // GPU memory is per-GPU, so multiply by the number of GPUs
+        // GPU_memory is now per-GPU VRAM (issue #695), but cost-per-GPU-memory
+        // is based on the instance's total VRAM (you rent every GPU on the
+        // box), so scale back up by the GPU count. Fractional-GPU instances
+        // (GPU < 1) already store the total VRAM the instance gets, so only
+        // scale when there's a whole GPU.
         if (pricingUnit === "gpu_memory") {
-            pricingUnitModifier *= (instance.GPU as number) || 1;
+            pricingUnitModifier *= Math.max((instance.GPU as number) || 1, 1);
         }
     }
 

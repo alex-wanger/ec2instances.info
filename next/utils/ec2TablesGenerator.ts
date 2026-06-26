@@ -78,7 +78,7 @@ export function ec2(instance: Omit<EC2Instance, "pricing">): Table[] {
                     bgStyled: true,
                 },
                 {
-                    name: "Video Memory (GiB)",
+                    name: "Video Memory per GPU (GiB)",
                     children: instance.GPU_memory || "0",
                 },
                 {
