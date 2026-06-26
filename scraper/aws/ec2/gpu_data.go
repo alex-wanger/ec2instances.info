@@ -608,7 +608,7 @@ func addGpuInfo(instances map[string]*EC2Instance) {
 		instance.ComputeCapability = gpuData.computeCapability
 
 		// Display per-GPU VRAM instead of the total VRAM across all GPUs,
-		//(issue #695). For instances with one or more GPU's, divide the total VRAM by the GPU count.
+		// (issue #695). For instances with one or more GPU's, divide the total VRAM by the GPU count.
 		// For fractional GPUs, the VRAM stored is already corrected for the GPU count, so use it as-is.
 		if gpuData.gpuCount >= 1 {
 			instance.GPUMemory = int(math.Round(float64(gpuData.gpuMemory) / gpuData.gpuCount))
